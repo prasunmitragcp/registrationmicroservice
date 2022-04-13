@@ -3,13 +3,7 @@ package com.fd.registrationmicroservice.appuser;
 import java.util.Collection;
 import java.util.Collections;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -55,14 +49,15 @@ public class AppUser implements UserDetails {
 	
 	
 
-	public AppUser(String name, 
-			String username, 
+	public AppUser(
+			String firstname, 
+			String lastname, 
 			String email, 
 			String password, 
 			AppUserRole appUserRole) {
 		
-		this.firstName = name;
-		this.lastName = username;
+		this.firstName = firstname;
+		this.lastName = lastname;
 		this.email = email;
 		this.password = password;
 		this.appUserRole = appUserRole;
@@ -92,6 +87,19 @@ public class AppUser implements UserDetails {
 		// TODO Auto-generated method stub
 		return email;
 	}
+	
+	
+	private String getfirstName() {
+		// TODO Auto-generated method stub
+		return firstName;
+
+	}
+	
+	private String getlastname() {
+		// TODO Auto-generated method stub
+		return lastName;
+
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -110,10 +118,6 @@ public class AppUser implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	@Override
 	public boolean isEnabled() {
@@ -121,17 +125,7 @@ public class AppUser implements UserDetails {
 		return enabled;
 	}
 	
-	private String getfirstName() {
-		// TODO Auto-generated method stub
-		return firstName;
 
-	}
-	
-	private String getlastname() {
-		// TODO Auto-generated method stub
-		return lastName;
-
-	}
 	
 	
 	

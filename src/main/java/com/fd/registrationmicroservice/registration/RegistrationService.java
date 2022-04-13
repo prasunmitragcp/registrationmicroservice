@@ -32,13 +32,16 @@ public class RegistrationService {
 		  
 		  if(!isValidEmail) { throw new IllegalStateException("Email not valid!"); }
 		 
-		
+			System.out.println("request email: "+request.getEmail());
+			System.out.println("request first name: "+request.getFirstName());
+			System.out.println("request lastname: "+request.getLastName());
+			System.out.println("request password: "+request.getPassword());
 		//return "It works!";
 		
 		  String token = appUserService.signUpUser( 
 				  new AppUser( 
-						  request.getFirstname(),
-						  request.getLastname(), 
+						  request.getFirstName(),
+						  request.getLastName(), 
 						  request.getEmail(), 
 						  request.getPassword(),
 						  AppUserRole.USER 
@@ -47,7 +50,7 @@ public class RegistrationService {
 		  
 		  String link = "http://localhost:8087/api/v1/registration/confirm?token="+token;
 		  emailSender.send(
-				  request.getEmail(),buildEmail(request.getFirstname(), link));
+				  request.getEmail(),buildEmail(request.getFirstName(), link));
 		  
 		  return token;
 		 
