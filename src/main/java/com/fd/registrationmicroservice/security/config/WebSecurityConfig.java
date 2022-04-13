@@ -25,10 +25,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		http
-			.csrf()
-				.disable()
-				.authorizeRequests()
-				.antMatchers("api/v*/registration/**")
+			.csrf().disable()
+			.authorizeRequests()
+				.antMatchers("/api/v*/registration/**")
 				.permitAll()
 			.anyRequest()
 			.authenticated().and()
